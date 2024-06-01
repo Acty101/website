@@ -20,7 +20,7 @@ const NUMBER: string = "(734) 450-5507";
 /*
 RESUME:
 */
-const RESUME: string = "Jun_Kit_Lim_Resume.pdf";
+const RESUME: string = "./misc-files/Jun_Kit_Lim_Resume.pdf";
 
 function App() {
   return (

@@ -82,18 +82,16 @@ function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Navbar.Text>
             <Nav className="me-auto">
-              <Nav.Link href="/#about">About</Nav.Link>
-              <Nav.Link href="/resume">Resume</Nav.Link>
-              <Nav.Link href="/#projects">Projects</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
               <NavDropdown
-                title="Contact"
+                title="Contacts"
                 id="basic-nav-dropdown"
                 autoClose="outside"
               >
                 <NavDropdown.Item>
                   <TooltipCopyIconWord
                     id="tooltip-anchor-phone"
-                    imgUrl="./phone.png"
+                    imgUrl="./logo/phone.png"
                     text={number}
                     clickHandler={() => {
                       navigator.clipboard.writeText(number);
@@ -106,7 +104,7 @@ function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
                 <NavDropdown.Item>
                   <TooltipCopyIconWord
                     id="tooltip-anchor-email"
-                    imgUrl="./gmail.svg"
+                    imgUrl="./logo/gmail.svg"
                     text={email}
                     clickHandler={() => {
                       navigator.clipboard.writeText(email);
@@ -119,10 +117,10 @@ function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
               </NavDropdown>
               <NavDropdown title="Links" id="basic-nav-dropdown">
                 <NavDropdown.Item href={github}>
-                  <IconWord imgUrl="./github-mark-white.svg" text="GitHub" />
+                  <IconWord imgUrl="./logo/github-mark-white.svg" text="GitHub" />
                 </NavDropdown.Item>
                 <NavDropdown.Item href={linkedin}>
-                  <IconWord imgUrl="./linkedin_icon.svg" text="LinkedIn" />
+                  <IconWord imgUrl="./logo/linkedin_icon.svg" text="LinkedIn" />
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>

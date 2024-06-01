@@ -4,7 +4,7 @@ import "./Base.css";
 
 function Base({ github, email, linkedin, number }: ContactLinksProps) {
   return (
-    <>
+    <div className="flex-container">
       <NavBar
         github={github}
         email={email}
@@ -14,7 +14,7 @@ function Base({ github, email, linkedin, number }: ContactLinksProps) {
       <main className="content">
         <Outlet />
       </main>
-    </>
+    </div>
   );
 }
 
