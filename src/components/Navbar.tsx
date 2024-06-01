@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Tooltip } from "react-tooltip";
 
+
 interface IconWordProps {
   imgUrl: string;
   text: string;
@@ -17,7 +18,7 @@ interface TooltipIconWordProps extends IconWordProps {
   hideHandler?: () => void;
 }
 
-interface ContantLinksProps {
+export interface ContactLinksProps {
   github: string;
   linkedin: string;
   number: string;
@@ -64,7 +65,7 @@ function TooltipCopyIconWord({
   );
 }
 
-function NavBar({ github, linkedin, number, email }: ContantLinksProps) {
+function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
   const COPYMSG = "Copy to clipboard?";
   const [phoneMsg, setPhoneMsg] = useState(COPYMSG);
   const [emailMsg, setEmailMsg] = useState(COPYMSG);
@@ -81,8 +82,9 @@ function NavBar({ github, linkedin, number, email }: ContantLinksProps) {
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Navbar.Text>
             <Nav className="me-auto">
-              <Nav.Link href="#about">About</Nav.Link>
-              <Nav.Link href="#projects">Projects</Nav.Link>
+              <Nav.Link href="/#about">About</Nav.Link>
+              <Nav.Link href="/resume">Resume</Nav.Link>
+              <Nav.Link href="/#projects">Projects</Nav.Link>
               <NavDropdown
                 title="Contact"
                 id="basic-nav-dropdown"
