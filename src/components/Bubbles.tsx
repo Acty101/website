@@ -67,7 +67,7 @@ export function ShrinkingBubble() {
       style={{ width: 150, height: 150 }}
       animate={{ scale: 0 }}
       transition={{ duration: 2 }}
-      initial={{ scale: 15 }}
+      initial={{ scale: 16 }}
     ></motion.div>
   );
 }
@@ -98,8 +98,6 @@ export function RotatingBubble({
   };
 
   // states
-  const [width, setWidth] = useState(140);
-  const [height, setHeight] = useState(140);
   const [angleState, setAngle] = useState(angle);
   const [zIndex, setZIndex] = useState(2);
   const [textState, setText] = useState(text);
@@ -132,18 +130,7 @@ export function RotatingBubble({
     <motion.div
       ref={scope}
       className="round-corners d-flex align-items-center justify-content-center"
-      onMouseEnter={() => {
-        if (select) {
-          setWidth(width + 20);
-          setHeight(height + 20);
-        }
-      }}
-      onMouseLeave={() => {
-        if (select) {
-          setWidth(width - 20);
-          setHeight(height - 20);
-        }
-      }}
+      whileHover={{ scale: 1.2 }}
       onClick={() => {
         setZIndex(5);
         setText("");
@@ -155,7 +142,7 @@ export function RotatingBubble({
             console.error("Animation failed: ", error);
           });
       }}
-      style={{ width: width, height: height, zIndex: zIndex }}
+      style={{ width: 140, height: 140, zIndex: zIndex }}
     >
       {textState}
     </motion.div>
