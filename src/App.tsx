@@ -3,11 +3,15 @@ import {
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from "react-router-dom";
-import Resume from "./components/Resume";
-import Home from "./components/Home";
-import Base from "./components/Base";
+import Resume from "./pages/Resume";
+import Home from "./pages/Home";
+import Base from "./pages/Base";
+import About from "./pages/About";
+import Projects from "./pages/Projects";
 import "./App.css";
+import { useEffect, useState } from "react";
 
 /* 
 CONTACT DETAILS:
@@ -23,28 +27,30 @@ RESUME:
 const RESUME: string = "./misc-files/Jun_Kit_Lim_Resume.pdf";
 
 function App() {
+
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Base
-                github={GITHUB}
-                email={EMAIL}
-                linkedin={LINKEDIN}
-                number={NUMBER}
-              />
-            }
-          >
-            <Route path="/" element={<Home />} />
-            <Route path="/resume" element={<Resume path={RESUME} />} />
-            <Route path="*" element={<Navigate to="/" />} />
-          </Route>
-        </Routes>
-      </Router>
-    </>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Base
+            github={GITHUB}
+            email={EMAIL}
+            linkedin={LINKEDIN}
+            number={NUMBER}
+          />
+        }
+      >
+        <Route path="/" element={<Home/>} />
+        <Route
+          path="/resume"
+          element={<Resume path={RESUME} />}
+        />
+        <Route path="/about-me" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Route>
+    </Routes>
   );
 }
 

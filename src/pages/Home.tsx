@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Bubble from "./Bubble";
+import { RotatingBubble } from "../components/Bubbles";
 import "./Home.css";
 
 // import Container from "react-bootstrap/Container";
@@ -12,24 +12,27 @@ function Home() {
   const duration = 2;
   const radius = 250;
   return (
-    <div className="h-100 d-flex align-items-center justify-content-center">
-      <Bubble
+    <div
+      className="h-100 d-flex align-items-center justify-content-center"
+      style={{ overflow: "hidden", position: "relative" }}
+    >
+      <RotatingBubble
         angle={0}
         radius={radius}
         duration={duration}
         text={"About"}
-        link=""
+        link="/about-me"
         select={true}
       />
-      <Bubble
+      <RotatingBubble
         angle={120}
         radius={radius}
         duration={duration}
         text={"Projects"}
-        link=""
+        link="/projects"
         select={true}
       />
-      <Bubble
+      <RotatingBubble
         angle={240}
         radius={radius}
         duration={duration}
@@ -37,9 +40,6 @@ function Home() {
         link="/resume"
         select={true}
       />
-      <Bubble angle={60} radius={radius} duration={duration} link="" text={""} />
-      <Bubble angle={180} radius={radius} duration={duration} link="" text={""} />
-      <Bubble angle={300} radius={radius} duration={duration} link="" text={""} />
 
       <motion.div
         className="profile-pic-container"

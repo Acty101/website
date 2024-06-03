@@ -1,4 +1,4 @@
-import NavBar, { ContactLinksProps } from "./Navbar";
+import NavBar, { ContactLinksProps } from "../components/Navbar";
 import { Outlet } from "react-router-dom";
 import "./Base.css";
 
