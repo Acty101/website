@@ -1,9 +1,10 @@
 import Routed from "./RoutedTemplate";
+import { useRef, useEffect } from "react";
 
 function Projects() {
   return (
     <Routed>
-      <div></div>
+      <div> Child Component</div>
     </Routed>
   );
 }

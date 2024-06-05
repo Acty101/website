@@ -60,6 +60,20 @@ export function Bubble() {
   );
 }
 
+/**
+ * Used for occupying the whole space of a container
+ * NOTE: expects container to be postion: relative and overflow: hidden
+ * Use to ensure consistency with bubble colors and animations
+ */
+export function BigStaticBubble() {
+  return (
+    <div
+      className="round-corners d-flex align-items-center justify-content-center"
+      style={{ width: 2400, height: 2400 }}
+    ></div>
+  );
+}
+
 export function ShrinkingBubble() {
   return (
     <motion.div
