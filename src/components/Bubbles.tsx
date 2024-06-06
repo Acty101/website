@@ -3,60 +3,24 @@ import { motion, useAnimate } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import "./Bubbles.css";
 
+interface AnimationSettings {
+  angle: number;
+  radius: number;
+  duration: number;
+  link: string;
+  text?: string;
+  select?: boolean;
+}
+
 export function Bubble() {
-  const [scope, animate] = useAnimate();
-  //   useEffect(() => {
-  //     animate(scope.current, { x: x, y: y }, { duration: duration });
-  //   }, [scope]);
-
-  const [width, setWidth] = useState(140);
-  const [height, setHeight] = useState(140);
-  const [zIndex, setZIndex] = useState(2);
-  const [textState, setText] = useState("");
-  const select = true;
-
-  const navigate = useNavigate();
-
   return (
     <motion.div
-      ref={scope}
       className="round-corners d-flex align-items-center justify-content-center"
       style={{ width: 150, height: 150 }}
       animate={{ y: 0 }}
       transition={{ duration: 2 }}
       initial={{ y: -500 }}
     ></motion.div>
-
-    // <motion.div
-    //   ref={scope}
-    //   className="round-corners d-flex align-items-center justify-content-center"
-    //   onMouseEnter={() => {
-    //     if (select) {
-    //       setWidth(width + 20);
-    //       setHeight(height + 20);
-    //     }
-    //   }}
-    //   onMouseLeave={() => {
-    //     if (select) {
-    //       setWidth(width - 20);
-    //       setHeight(height - 20);
-    //     }
-    //   }}
-    //   onClick={() => {
-    //     setZIndex(1000);
-    //     setText("");
-    //     animate(scope.current, { scale: 15 }, { duration: 1 })
-    //       .then(() => {
-    //         // navigate("");
-    //       })
-    //       .catch((error) => {
-    //         console.error("Animation failed: ", error);
-    //       });
-    //   }}
-    //   style={{ width: width, height: height, zIndex: zIndex }}
-    // >
-    //   {textState}
-    // </motion.div>
   );
 }
 
@@ -74,6 +38,9 @@ export function BigStaticBubble() {
   );
 }
 
+/**
+ * Bubble for shrinking animation after link changes
+ */
 export function ShrinkingBubble() {
   return (
     <motion.div
@@ -86,15 +53,9 @@ export function ShrinkingBubble() {
   );
 }
 
-interface AnimationSettings {
-  angle: number;
-  radius: number;
-  duration: number;
-  link: string;
-  text?: string;
-  select?: boolean;
-}
-
+/**
+ * Bubble that rotates around 
+ */
 export function RotatingBubble({
   angle,
   radius,
@@ -144,7 +105,7 @@ export function RotatingBubble({
     <motion.div
       ref={scope}
       className="round-corners d-flex align-items-center justify-content-center"
-      whileHover={{ scale: 1.2 }}
+      whileHover={select ? { scale: 1.2 } : undefined}
       onClick={() => {
         setZIndex(5);
         setText("");

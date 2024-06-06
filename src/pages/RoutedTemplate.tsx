@@ -1,20 +1,18 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { ShrinkingBubble, BigStaticBubble } from "../components/Bubbles";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Routed({ children }: { children: React.ReactNode }) {
   const location = useLocation();
-  const navigate = useNavigate();
   const [stateData, _] = useState(location.state ?? "");
   const [rendered, setRendered] = useState(false);
 
+  // Run after the first render finishes
   useEffect(() => {
-    navigate(location.pathname, { state: null });
-  }, [location.state, navigate]);
-
-  // Run after the first render finishes, triggering shrinking animation
-  useEffect(() => {
+    // Trigger shrinking animation
     setRendered(true);
+    // Prevents shrinking animation from running more than once against refreshes
+    window.history.replaceState(null, "");
   }, []);
 
   return (
