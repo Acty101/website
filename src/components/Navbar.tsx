@@ -99,7 +99,7 @@ function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
                 <NavDropdown.Item>
                   <TooltipCopyIconWord
                     id="tooltip-anchor-phone"
-                    imgUrl="./logo/phone.png"
+                    imgUrl="./logo/phone.svg"
                     text={number}
                     clickHandler={() => {
                       navigator.clipboard.writeText(number);

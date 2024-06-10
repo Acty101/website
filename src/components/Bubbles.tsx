@@ -1,25 +1,32 @@
 import { useEffect, useState } from "react";
-import { motion, useAnimate } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { motion, useAnimate, AnimationScope } from "framer-motion";
 import "./Bubbles.css";
 
 interface AnimationSettings {
   angle: number;
   radius: number;
   duration: number;
-  link: string;
   text?: string;
   select?: boolean;
+  waitTime?: number;
+  clockwise?: boolean;
+  onClickCallback?: (arg: AnimationScope<any>) => void;
 }
 
-export function Bubble() {
+export function LeftSlideBubble({
+  finalX,
+  finalY,
+}: {
+  finalX: number | string;
+  finalY: number | string;
+}) {
   return (
     <motion.div
       className="round-corners d-flex align-items-center justify-content-center"
-      style={{ width: 150, height: 150 }}
-      animate={{ y: 0 }}
+      style={{ width: 150, height: 150, zIndex: 10 }}
+      animate={{ x: finalX, y: finalY }}
       transition={{ duration: 2 }}
-      initial={{ y: -500 }}
+      initial={{ x: "-100vw", y: finalY }}
     ></motion.div>
   );
 }
@@ -45,7 +52,7 @@ export function ShrinkingBubble() {
   return (
     <motion.div
       className="round-corners d-flex align-items-center justify-content-center"
-      style={{ width: 150, height: 150 }}
+      style={{ width: 150, height: 150, zIndex: 5 }}
       animate={{ scale: 0 }}
       transition={{ duration: 2 }}
       initial={{ scale: 16 }}
@@ -54,19 +61,23 @@ export function ShrinkingBubble() {
 }
 
 /**
- * Bubble that rotates around 
+ * Bubble that rotates around a fixed point
  */
 export function RotatingBubble({
   angle,
   radius,
   duration,
-  link = "",
   text = "",
   select = false,
+  waitTime = 0,
+  clockwise = true,
+  onClickCallback = () => {},
 }: AnimationSettings) {
   // angle to position functions
   const countX = (radius: number, angle: number) => {
-    return radius * Math.sin(angle * (Math.PI / 180));
+    return clockwise
+      ? radius * Math.sin(angle * (Math.PI / 180))
+      : -radius * Math.sin(angle * (Math.PI / 180));
   };
   const countY = (radius: number, angle: number) => {
     return -radius * Math.cos(angle * (Math.PI / 180));
@@ -76,19 +87,20 @@ export function RotatingBubble({
   const [angleState, setAngle] = useState(angle);
   const [zIndex, setZIndex] = useState(2);
   const [textState, setText] = useState(text);
+  const [rotate, setRotate] = useState(true);
   const [x, setX] = useState(countX(radius, angle));
   const [y, setY] = useState(countY(radius, angle));
   const [scope, animate] = useAnimate();
+  const [wait, setWait] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
       // Update the counter value every second
-      setAngle((prev) => prev + 1);
+      rotate && setAngle((prev) => prev + 1);
     }, 100);
-
     // Cleanup function to clear the interval when the component unmounts
     return () => clearInterval(interval);
-  }, []);
+  }, [rotate]);
 
   useEffect(() => {
     setX(countX(radius, angleState));
@@ -96,10 +108,15 @@ export function RotatingBubble({
   }, [angleState]);
 
   useEffect(() => {
-    animate(scope.current, { x: x, y: y }, { duration: duration });
-  }, [scope, x, y]);
-
-  const navigate = useNavigate();
+    if (wait) {
+      const interval = setInterval(() => {
+        setWait(false);
+      }, waitTime);
+      return () => clearInterval(interval);
+    } else {
+      animate(scope.current, { x: x, y: y }, { duration: duration });
+    }
+  }, [wait, x, y]);
 
   return (
     <motion.div
@@ -107,15 +124,11 @@ export function RotatingBubble({
       className="round-corners d-flex align-items-center justify-content-center"
       whileHover={select ? { scale: 1.2 } : undefined}
       onClick={() => {
-        setZIndex(5);
+        setRotate(false);
+        setZIndex(3);
         setText("");
-        animate(scope.current, { scale: 16 }, { duration: 1 })
-          .then(() => {
-            navigate(link, { state: { prev: "/" } });
-          })
-          .catch((error) => {
-            console.error("Animation failed: ", error);
-          });
+        onClickCallback(scope);
+        // set a back button to conditionally render that onClick restores the original state?
       }}
       style={{ width: 140, height: 140, zIndex: zIndex }}
     >
