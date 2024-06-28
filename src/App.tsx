@@ -20,7 +20,7 @@ const GITHUB: string = "https://github.com/Acty101";
 const EMAIL: string = "junkit@umich.edu";
 const LINKEDIN: string = "https://www.linkedin.com/in/junkitlim/";
 const NUMBER: string = "(734) 450-5507";
-
+// test
 /*
 RESUME:
 */
