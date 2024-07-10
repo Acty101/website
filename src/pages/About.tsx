@@ -1,8 +1,8 @@
 import Routed from "./RoutedTemplate";
-import { LeftSlideBubble, RotatingBubble } from "../components/Bubbles";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Profile from "../components/Profile";
 import { CSSProperties, useEffect, useState } from "react";
 import { animate } from "framer-motion";
 
@@ -12,9 +12,7 @@ function About() {
   const [moveLeft, setMoveLeft] = useState(true);
 
   const colClass = "h-100 d-flex align-items-center justify-content-center";
-  const colStlye: CSSProperties | undefined = {
-    overflow: "hidden",
-  };
+  const colStlye: CSSProperties | undefined = {};
   const radius = 120;
   const duration = 1.5;
 
@@ -36,42 +34,32 @@ function About() {
 
   return (
     <Routed>
-      <Container fluid className="h-100">
+      <Container
+        fluid
+        className="h-100"
+        style={{ overflow: "auto", overflowY: "auto" }}
+      >
         <Row className="h-100">
           <Col sm className={colClass} style={colStlye}>
             hello
           </Col>
-          <Col
-            sm
-            className={colClass}
-            style={{ ...colStlye, position: "absolute" }}
-          >
-            {/* <LeftSlideBubble finalX={"-20vw"} finalY={"-30vh"} /> */}
-            <RotatingBubble
-              angle={0}
-              radius={radius}
-              duration={duration}
-              text={"Introduction"}
-              select={true}
-              clockwise={false}
-              onClickCallback={callback}
-            />
-            <RotatingBubble
-              angle={120}
-              radius={radius}
-              duration={duration}
-              text={"Hobbies"}
-              select={true}
-              clockwise={false}
-            />
-            <RotatingBubble
-              angle={240}
-              radius={radius}
-              duration={duration}
-              text={"Skills"}
-              select={true}
-              clockwise={false}
-            />
+          <Col xs={{ order: "first" }} sm={{order: 0 }} className={colClass} style={colStlye}>
+            <Container fluid className="h-100">
+              <Row className="h-50">
+                <Col sm className={colClass} style={colStlye}>
+                  <Profile duration={0.5} />
+                </Col>
+              </Row>
+              <Row>
+                <Col sm className={colClass} style={colStlye}>
+                  <p>
+                    Hello! I'm a BSE Computer Science Junior in The University
+                    of Michigan. I'm interested in many things including web
+                    development, distributed systems, math and finance.
+                  </p>
+                </Col>
+              </Row>
+            </Container>
           </Col>
           <Col sm className={colClass} style={colStlye}>
             lol

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ShrinkingBubble, BigStaticBubble } from "../components/Bubbles";
+import { FadingBubble, BigStaticBubble } from "../components/Bubbles";
 import { useLocation } from "react-router-dom";
 
 function Routed({ children }: { children: React.ReactNode }) {
@@ -15,18 +15,18 @@ function Routed({ children }: { children: React.ReactNode }) {
     window.history.replaceState(null, "");
   }, []);
 
+  const className = "h-100 d-flex align-items-center justify-content-center";
+
   return (
     <>
       <div
-        className="h-100 d-flex align-items-center justify-content-center"
+        className={className}
         style={{ overflow: "hidden", position: "relative" }}
       >
         {children}
-        {stateData.prev === "/" && (rendered ? (
-          <ShrinkingBubble />
-        ) : (
-          <BigStaticBubble />)
-        )}
+
+        {stateData.prev === "/" &&
+          (rendered ? <FadingBubble duration={1} /> : <BigStaticBubble />)}
       </div>
     </>
   );

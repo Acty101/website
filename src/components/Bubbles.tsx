@@ -44,6 +44,26 @@ export function BigStaticBubble() {
     ></div>
   );
 }
+/**
+ * Bubble for fading out animation after link changes
+ */
+export function FadingBubble({ duration }: { duration: number }) {
+  const [mount, setMount] = useState(true);
+  const [scope, animate] = useAnimate();
+  useEffect(() => {
+    animate(scope.current, { opacity: 0 }, { duration: duration }).then(() => {
+      setMount(false); // unmount after done animating so it doesn't interfere
+    });
+  }, []);
+
+  return mount ? (
+    <motion.div
+      ref={scope}
+      className="round-corners d-flex align-items-center justify-content-center"
+      style={{ width: 150, height: 150, zIndex: 5, scale: 20 }}
+    ></motion.div>
+  ) : null;
+}
 
 /**
  * Bubble for shrinking animation after link changes
@@ -55,7 +75,7 @@ export function ShrinkingBubble() {
       style={{ width: 150, height: 150, zIndex: 5 }}
       animate={{ scale: 0 }}
       transition={{ duration: 2 }}
-      initial={{ scale: 16 }}
+      initial={{ scale: 20 }}
     ></motion.div>
   );
 }

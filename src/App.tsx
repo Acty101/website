@@ -1,17 +1,16 @@
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
-  useLocation,
 } from "react-router-dom";
 import Resume from "./pages/Resume";
 import Home from "./pages/Home";
 import Base from "./pages/Base";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
+import Hobbies from "./pages/Hobbies";
+import Skills from "./pages/Skills";
 import "./App.css";
-import { useEffect, useState } from "react";
 
 /* 
 CONTACT DETAILS:
@@ -46,8 +45,10 @@ function App() {
           path="/resume"
           element={<Resume path={RESUME} />}
         />
-        <Route path="/about-me" element={<About />} />
+        <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/skills" element={<Skills />} />
+        <Route path="/hobbies" element={<Hobbies />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
