@@ -1,6 +1,8 @@
 import NavBar, { ContactLinksProps } from "../components/Navbar";
 import { Outlet } from "react-router-dom";
-import "./Base.css";
+import "./css/Base.css";
+
+export const COLCLASS = "h-100 d-flex align-items-center justify-content-center";
 
 function Base({ github, email, linkedin, number }: ContactLinksProps) {
   return (

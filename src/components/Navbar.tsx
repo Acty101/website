@@ -4,7 +4,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Tooltip } from "react-tooltip";
-import { useNavigate } from "react-router-dom";
 
 interface IconWordProps {
   imgUrl: string;

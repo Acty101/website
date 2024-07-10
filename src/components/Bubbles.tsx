@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useAnimate, AnimationScope } from "framer-motion";
-import "./Bubbles.css";
+import "./css/Bubbles.css";
 
 interface AnimationSettings {
   angle: number;

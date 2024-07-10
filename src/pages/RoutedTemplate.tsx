@@ -26,7 +26,7 @@ function Routed({ children }: { children: React.ReactNode }) {
         {children}
 
         {stateData.prev === "/" &&
-          (rendered ? <FadingBubble duration={1} /> : <BigStaticBubble />)}
+          (rendered ? <FadingBubble duration={2} /> : <BigStaticBubble />)}
       </div>
     </>
   );

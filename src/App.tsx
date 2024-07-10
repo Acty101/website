@@ -1,16 +1,12 @@
-import {
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Resume from "./pages/Resume";
 import Home from "./pages/Home";
 import Base from "./pages/Base";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
-import Hobbies from "./pages/Hobbies";
 import Skills from "./pages/Skills";
 import "./App.css";
+import Experience from "./pages/Experience";
 
 /* 
 CONTACT DETAILS:
@@ -26,7 +22,6 @@ RESUME:
 const RESUME: string = "./misc-files/Jun_Kit_Lim_Resume.pdf";
 
 function App() {
-
   return (
     <Routes>
       <Route
@@ -40,15 +35,12 @@ function App() {
           />
         }
       >
-        <Route path="/" element={<Home/>} />
-        <Route
-          path="/resume"
-          element={<Resume path={RESUME} />}
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/resume" element={<Resume path={RESUME} />} />
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/skills" element={<Skills />} />
-        <Route path="/hobbies" element={<Hobbies />} />
+        <Route path="/experience" element={<Experience />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>

@@ -58,10 +58,10 @@ function Home() {
         angle={216}
         radius={radius}
         duration={duration}
-        text={"Hobbies"}
+        text={"Experience"}
         select={true}
         clockwise={rotateClockwise}
-        onClickCallback={callbackGenerator("/hobbies")}
+        onClickCallback={callbackGenerator("/experience")}
       />
       <RotatingBubble
         angle={288}

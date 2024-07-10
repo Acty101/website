@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import "./Profile.css";
+import "./css/Profile.css";
 
 function Profile({ duration }: { duration: number }) {
   const [img, setImg] = useState("./images/profile.jpg");
