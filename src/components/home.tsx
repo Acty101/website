@@ -1,10 +1,9 @@
 import { animate } from "framer-motion";
-import { RotatingBubble } from "../components/Bubbles";
+import { RotatingBubble } from "./bubbles";
 import { useNavigate } from "react-router-dom";
-import Profile from "../components/Profile";
+import Profile from "./profile";
 
 function Home() {
-  
   const duration = 2;
   const radius = 250;
   const navigate = useNavigate();
@@ -27,7 +26,7 @@ function Home() {
       className="h-100 d-flex align-items-center justify-content-center"
       style={{ overflow: "hidden", position: "relative" }}
     >
-      <RotatingBubble
+      {/* <RotatingBubble
         angle={0}
         radius={radius}
         duration={duration}
@@ -73,8 +72,7 @@ function Home() {
         onClickCallback={callbackGenerator("/skills")}
       />
 
-      <Profile duration={duration}/>
-
+      <Profile duration={duration}/> */}
     </div>
   );
 }

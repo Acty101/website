@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useAnimate, AnimationScope } from "framer-motion";
-import "./css/Bubbles.css";
+import "./css/bubbles.css";
 
 interface AnimationSettings {
   angle: number;
@@ -105,9 +105,6 @@ export function RotatingBubble({
 
   // states
   const [angleState, setAngle] = useState(angle);
-  const [zIndex, setZIndex] = useState(2);
-  const [textState, setText] = useState(text);
-  const [rotate, setRotate] = useState(true);
   const [x, setX] = useState(countX(radius, angle));
   const [y, setY] = useState(countY(radius, angle));
   const [scope, animate] = useAnimate();
@@ -116,11 +113,11 @@ export function RotatingBubble({
   useEffect(() => {
     const interval = setInterval(() => {
       // Update the counter value every second
-      rotate && setAngle((prev) => prev + 1);
+      setAngle((prev) => prev + 1);
     }, 100);
     // Cleanup function to clear the interval when the component unmounts
     return () => clearInterval(interval);
-  }, [rotate]);
+  }, []);
 
   useEffect(() => {
     setX(countX(radius, angleState));
@@ -144,15 +141,11 @@ export function RotatingBubble({
       className="round-corners d-flex align-items-center justify-content-center"
       whileHover={select ? { scale: 1.2 } : undefined}
       onClick={() => {
-        setRotate(false);
-        setZIndex(3);
-        setText("");
         onClickCallback(scope);
-        // set a back button to conditionally render that onClick restores the original state?
       }}
-      style={{ width: 140, height: 140, zIndex: zIndex }}
+      style={{ width: 140, height: 140, zIndex: 3 }}
     >
-      {textState}
+      {text}
     </motion.div>
   );
 }

@@ -11,3 +11,8 @@
     max-width: 100%;
     height: auto;
 }
+
+.logo-card {
+    border-radius: 50px;
+    background: #FFFFFF;
+  }

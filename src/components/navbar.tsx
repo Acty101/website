@@ -78,10 +78,10 @@ function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
 
   return (
     <Navbar
-      expand="lg"
-      className="bg-body-tertiary"
+      expand="md"
+      className="bg-dark"
       data-bs-theme="dark"
-      style={{ zIndex: 100 }}
+      style={{ zIndex: 1000 }}
     >
       <Container>
         <Navbar.Brand href="/">Jun Kit Lim</Navbar.Brand>

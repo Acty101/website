@@ -1,12 +1,16 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import Resume from "./pages/Resume";
-import Home from "./pages/Home";
-import Base from "./pages/Base";
-import About from "./pages/About";
-import Projects from "./pages/Projects";
-import Skills from "./pages/Skills";
+import Resume from "./components/resume";
+import Home from "./components/home";
+import NavBar from "./components/navbar";
+import About from "./components/about";
+import Projects from "./components/projects";
+import Skills from "./components/skills";
+import Experience from "./components/experience";
+import Footer from "./components/footer";
 import "./App.css";
-import Experience from "./pages/Experience";
+
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 
 /* 
 CONTACT DETAILS:
@@ -15,35 +19,68 @@ const GITHUB: string = "https://github.com/Acty101";
 const EMAIL: string = "junkit@umich.edu";
 const LINKEDIN: string = "https://www.linkedin.com/in/junkitlim/";
 const NUMBER: string = "(734) 450-5507";
-// test
 /*
 RESUME:
 */
 const RESUME: string = "./misc-files/Jun_Kit_Lim_Resume.pdf";
 
-function App() {
+function ContentWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Base
-            github={GITHUB}
-            email={EMAIL}
-            linkedin={LINKEDIN}
-            number={NUMBER}
+    <Container className="h-100 content mt-4 mb-4">
+      <Row />
+      {children}
+      <Row />
+    </Container>
+  );
+}
+
+function App() {
+  // scroll bar configs
+  const contentRef = useRef(null);
+  const { scrollYProgress } = useScroll({ container: contentRef });
+  const scrollYProgressDamped = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+  const [renderScroll, setRenderScroll] = useState(false);
+  const handleScroll = () => {
+    setRenderScroll(scrollYProgress.get() > 0.03);
+  };
+
+  return (
+    <>
+      <AnimatePresence>
+        {renderScroll && (
+          <motion.div
+            className="bar"
+            style={{ scaleX: scrollYProgressDamped }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            initial={{ scale: 0, opacity: 0 }}
+            exit={{ scale: 0, opacity: 0 }}
           />
-        }
-      >
-        <Route path="/" element={<Home />} />
-        <Route path="/resume" element={<Resume path={RESUME} />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/skills" element={<Skills />} />
-        <Route path="/experience" element={<Experience />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Route>
-    </Routes>
+        )}
+      </AnimatePresence>
+
+      <div className="flex-container" ref={contentRef} onScroll={handleScroll}>
+        <NavBar
+          github={GITHUB}
+          email={EMAIL}
+          linkedin={LINKEDIN}
+          number={NUMBER}
+        />
+        <ContentWrapper children={<About />} />
+        <ContentWrapper children={<Skills />} />
+        <ContentWrapper>
+          <Col sm="auto" />
+          <Experience />
+          <Col sm="auto" />
+        </ContentWrapper>
+        <ContentWrapper children={<Projects />} />
+        <Footer />
+      </div>
+    </>
   );
 }
 
