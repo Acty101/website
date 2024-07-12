@@ -20,7 +20,7 @@ function Skills() {
         className="align-items-center justify-content-center"
         style={{ overflow: "hidden", position: "relative" }}
       >
-        <Col sm className={COLALIGNMID} style={{ height: contentHeight }}>
+        <Col sm={12} md={6} className={COLALIGNMID} style={{ height: contentHeight }}>
           <b>Frontend</b>
           <RotatingBubble
             angle={0}
@@ -50,7 +50,7 @@ function Skills() {
             onClickCallback={() => {}}
           />
         </Col>
-        <Col sm className={COLALIGNMID} style={{ height: contentHeight }}>
+        <Col sm={12} md={6} className={COLALIGNMID} style={{ height: contentHeight }}>
           <b>Backend</b>
           <RotatingBubble
             angle={0}

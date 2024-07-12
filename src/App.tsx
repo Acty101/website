@@ -70,14 +70,12 @@ function App() {
           linkedin={LINKEDIN}
           number={NUMBER}
         />
-        <ContentWrapper children={<About />} />
-        <ContentWrapper children={<Skills />} />
         <ContentWrapper>
-          <Col sm="auto" />
+          <About />
+          <Skills />
           <Experience />
-          <Col sm="auto" />
+          <Projects />
         </ContentWrapper>
-        <ContentWrapper children={<Projects />} />
         <Footer />
       </div>
     </>
