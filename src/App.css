@@ -39,7 +39,7 @@
 
 .flex-container {
   overflow-x: hidden;
-  background: #706969;
+  background: #000000;
 }
 
 .flex-container .content {
@@ -54,17 +54,8 @@
   right: 0;
   height: 10px;
   transform-origin: 0%;
-  background: #ac3030;
+  background: #919191;
   z-index: 100;
-}
-
-#progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100px; /* Adjust width as needed */
-  height: 100px; /* Adjust height as needed */
-  z-index: 1000; /* Ensure it's above other content */
 }
 
 /* Style for the background circle */

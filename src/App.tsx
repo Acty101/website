@@ -9,8 +9,9 @@ import Footer from "./components/footer";
 import "./App.css";
 
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import "./components/css/general.css";
 
 /* 
 CONTACT DETAILS:
@@ -36,20 +37,34 @@ function ContentWrapper({ children }: { children: React.ReactNode }) {
 
 function App() {
   // scroll bar configs
-  const contentRef = useRef(null);
-  const { scrollYProgress } = useScroll({ container: contentRef });
+  const { scrollYProgress } = useScroll();
   const scrollYProgressDamped = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
   });
   const [renderScroll, setRenderScroll] = useState(false);
-  const handleScroll = () => {
-    setRenderScroll(scrollYProgress.get() > 0.03);
-  };
+
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (latestScrollProgress) => {
+      if (latestScrollProgress < 0.1) {
+        setRenderScroll(false);
+      } else {
+        setRenderScroll(true);
+      }
+    });
+    // Cleanup the subscription when the component unmounts
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   return (
     <>
+      <NavBar
+        github={GITHUB}
+        email={EMAIL}
+        linkedin={LINKEDIN}
+        number={NUMBER}
+      />
       <AnimatePresence>
         {renderScroll && (
           <motion.div
@@ -63,19 +78,13 @@ function App() {
         )}
       </AnimatePresence>
 
-      <div className="flex-container" ref={contentRef} onScroll={handleScroll}>
-        <NavBar
-          github={GITHUB}
-          email={EMAIL}
-          linkedin={LINKEDIN}
-          number={NUMBER}
-        />
+      <div className="flex-container text-setting">
+        <About />
         <ContentWrapper>
-          <About />
           <Skills />
-          <Experience />
-          <Projects />
         </ContentWrapper>
+        <Experience />
+        <Projects />
         <Footer />
       </div>
     </>

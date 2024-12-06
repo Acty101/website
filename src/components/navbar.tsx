@@ -66,7 +66,7 @@ function TooltipCopyIconWord({
 
 function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
   const COPYMSG = "Copy to clipboard?";
-  const EMAILMSG = "Email me?";
+  const EMAILMSG = "Email me!";
   const [phoneMsg, setPhoneMsg] = useState(COPYMSG);
   const [emailMsg, setEmailMsg] = useState(EMAILMSG);
   const resetPhoneMsg = () => {
@@ -89,7 +89,10 @@ function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Navbar.Text>
             <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/">About</Nav.Link>
+              <Nav.Link href="#skills">Skills</Nav.Link>
+              <Nav.Link href="#experience">Experience</Nav.Link>
+              <Nav.Link href="#projects">Projects</Nav.Link>
               <NavDropdown
                 title="Contacts"
                 id="basic-nav-dropdown"

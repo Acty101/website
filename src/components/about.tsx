@@ -3,6 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Profile from "./profile";
 import { COLALIGNMID } from "./settings";
+import "./css/general.css";
 
 function About() {
   return (
@@ -10,7 +11,7 @@ function About() {
       <Row>
         <Col className={COLALIGNMID}>
           <h1>
-            <u>About Me!</u>
+            <u>Hi there!</u>
           </h1>
         </Col>
       </Row>
@@ -28,10 +29,10 @@ function About() {
             <Row>
               <Col sm className={COLALIGNMID}>
                 <p>
-                  Hello! I'm Jun Kit, a BSE Computer Science Junior in The
-                  University of Michigan. I'm interested in many things
-                  including web development, distributed systems, math and
-                  finance. Feel free to contact me!
+                  I'm Kit, a BSE Computer Science Junior in The University of
+                  Michigan. I'm interested in many things including web
+                  development, distributed systems, math and finance. Feel free
+                  to contact me!
                 </p>
               </Col>
             </Row>
