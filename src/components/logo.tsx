@@ -46,7 +46,7 @@ function LogoCard({
   points,
 }: logo_card_details) {
   return (
-    <Container fluid className={"h-100 logo-card"}>
+    <Container fluid className={"h-100 logo-card bg-dark"}>
       <Row>
         <Col sm className={COLALIGNEND}>
           <Logo duration={duration} logo_path={logo_path} scale={scale} />

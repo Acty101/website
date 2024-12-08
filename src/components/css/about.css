@@ -1,0 +1,17 @@
+.text-center {
+  text-align: center;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  min-height: 300px; /*set min height so container doesn't shorten*/
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  position: absolute;
+}

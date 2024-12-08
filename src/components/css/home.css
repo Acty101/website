@@ -1,0 +1,38 @@
+.flex-container {
+    overflow-x: hidden;
+    background: #000000;
+  }
+  
+  .flex-container .content {
+    border-radius: 75px;
+  }
+  
+  .bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    transform-origin: 0%;
+    background: #919191;
+    z-index: 100;
+  }
+  
+  /* Style for the background circle */
+  .bg {
+    fill: none; /* No fill for the background */
+    stroke: #ccc; /* Stroke color */
+    stroke-width: 5; /* Stroke width */
+  }
+  
+  /* Style for the progress indicator circle */
+  .indicator {
+    fill: none; /* No fill for the indicator */
+    stroke: #007bff; /* Stroke color */
+    stroke-width: 5; /* Stroke width */
+    stroke-linecap: round; /* Rounded stroke ends */
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }

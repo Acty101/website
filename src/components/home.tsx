@@ -1,79 +1,81 @@
-import { animate } from "framer-motion";
-import { RotatingBubble } from "./bubbles";
-import { useNavigate } from "react-router-dom";
-import Profile from "./profile";
+import NavBar from "./navbar";
+import About from "./about";
+import Projects from "./projects";
+import Skills from "./skills";
+import Experience from "./experience";
+import Footer from "./footer";
 
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { Container, Row } from "react-bootstrap";
+import "./css/general.css";
+import "./css/home.css";
+
+function ContentWrapper({ children }: { children: React.ReactNode }) {
+  return (
+    <Container className="h-100 content mt-4 mb-4 bg-dark">
+      <Row />
+      {children}
+      <Row />
+    </Container>
+  );
+}
 function Home() {
-  const duration = 2;
-  const radius = 250;
-  const navigate = useNavigate();
-  const rotateClockwise = Math.random() < 0.5;
+  // scroll bar configs
+  const { scrollYProgress } = useScroll();
+  const scrollYProgressDamped = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+  const [renderScroll, setRenderScroll] = useState(false);
 
-  const callbackGenerator = (link: string) => {
-    return (scope: any) => {
-      animate(scope.current, { scale: 20 }, { duration: 1 })
-        .then(() => {
-          navigate(link, { state: { prev: "/" } });
-        })
-        .catch((error) => {
-          console.error("Animation failed: ", error);
-        });
-    };
-  };
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (latestScrollProgress) => {
+      if (latestScrollProgress < 0.1) {
+        setRenderScroll(false);
+      } else {
+        setRenderScroll(true);
+      }
+    });
+    // Cleanup the subscription when the component unmounts
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   return (
-    <div
-      className="h-100 d-flex align-items-center justify-content-center"
-      style={{ overflow: "hidden", position: "relative" }}
-    >
-      {/* <RotatingBubble
-        angle={0}
-        radius={radius}
-        duration={duration}
-        text={"About"}
-        select={true}
-        clockwise={rotateClockwise}
-        onClickCallback={callbackGenerator("/about")}
-      />
-      <RotatingBubble
-        angle={72}
-        radius={radius}
-        duration={duration}
-        text={"Projects"}
-        select={true}
-        clockwise={rotateClockwise}
-        onClickCallback={callbackGenerator("/projects")}
-      />
-      <RotatingBubble
-        angle={144}
-        radius={radius}
-        duration={duration}
-        text={"Resume"}
-        select={true}
-        clockwise={rotateClockwise}
-        onClickCallback={callbackGenerator("/resume")}
-      />
-      <RotatingBubble
-        angle={216}
-        radius={radius}
-        duration={duration}
-        text={"Experience"}
-        select={true}
-        clockwise={rotateClockwise}
-        onClickCallback={callbackGenerator("/experience")}
-      />
-      <RotatingBubble
-        angle={288}
-        radius={radius}
-        duration={duration}
-        text={"Skills"}
-        select={true}
-        clockwise={rotateClockwise}
-        onClickCallback={callbackGenerator("/skills")}
-      />
+    <>
+      <NavBar />
+      <AnimatePresence>
+        {renderScroll && (
+          <motion.div
+            className="bar"
+            style={{ scaleX: scrollYProgressDamped }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            initial={{ scale: 0, opacity: 0 }}
+            exit={{ scale: 0, opacity: 0 }}
+          />
+        )}
+      </AnimatePresence>
 
-      <Profile duration={duration}/> */}
-    </div>
+      <div className="flex-container text-setting">
+        <div id="about">
+          <About />
+        </div>
+        <div id="skills">
+          <ContentWrapper>
+            <Skills />
+          </ContentWrapper>
+        </div>
+        <div id="experience">
+          <Experience />
+        </div>
+        <div id="projects">
+          <Projects />
+        </div>
+        <Footer />
+      </div>
+    </>
   );
 }
 

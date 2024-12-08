@@ -6,88 +6,28 @@ interface AnimationSettings {
   angle: number;
   radius: number;
   duration: number;
-  text?: string;
+  children: React.ReactNode;
   select?: boolean;
   waitTime?: number;
   clockwise?: boolean;
   onClickCallback?: (arg: AnimationScope<any>) => void;
 }
 
-export function LeftSlideBubble({
-  finalX,
-  finalY,
-}: {
-  finalX: number | string;
-  finalY: number | string;
-}) {
-  return (
-    <motion.div
-      className="round-corners d-flex align-items-center justify-content-center"
-      style={{ width: 150, height: 150, zIndex: 10 }}
-      animate={{ x: finalX, y: finalY }}
-      transition={{ duration: 2 }}
-      initial={{ x: "-100vw", y: finalY }}
-    ></motion.div>
-  );
-}
-
-/**
- * Used for occupying the whole space of a container
- * NOTE: expects container to be postion: relative and overflow: hidden
- * Use to ensure consistency with bubble colors and animations
- */
-export function BigStaticBubble() {
-  return (
-    <div
-      className="round-corners d-flex align-items-center justify-content-center"
-      style={{ width: 2400, height: 2400 }}
-    ></div>
-  );
-}
-/**
- * Bubble for fading out animation after link changes
- */
-export function FadingBubble({ duration }: { duration: number }) {
-  const [mount, setMount] = useState(true);
-  const [scope, animate] = useAnimate();
-  useEffect(() => {
-    animate(scope.current, { opacity: 0 }, { duration: duration }).then(() => {
-      setMount(false); // unmount after done animating so it doesn't interfere
-    });
-  }, []);
-
-  return mount ? (
-    <motion.div
-      ref={scope}
-      className="round-corners d-flex align-items-center justify-content-center"
-      style={{ width: 150, height: 150, zIndex: 5, scale: 20 }}
-    ></motion.div>
-  ) : null;
-}
-
-/**
- * Bubble for shrinking animation after link changes
- */
-export function ShrinkingBubble() {
-  return (
-    <motion.div
-      className="round-corners d-flex align-items-center justify-content-center"
-      style={{ width: 150, height: 150, zIndex: 5 }}
-      animate={{ scale: 0 }}
-      transition={{ duration: 2 }}
-      initial={{ scale: 20 }}
-    ></motion.div>
-  );
+interface IconList {
+  title: string;
+  imgSources: string[];
+  radius: number;
+  clockwise: boolean;
 }
 
 /**
  * Bubble that rotates around a fixed point
  */
-export function RotatingBubble({
+export function RotatingIcon({
   angle,
   radius,
   duration,
-  text = "",
+  children,
   select = false,
   waitTime = 0,
   clockwise = true,
@@ -122,7 +62,7 @@ export function RotatingBubble({
   useEffect(() => {
     setX(countX(radius, angleState));
     setY(countY(radius, angleState));
-  }, [angleState]);
+  }, [countX, radius, angleState]);
 
   useEffect(() => {
     if (wait) {
@@ -143,9 +83,36 @@ export function RotatingBubble({
       onClick={() => {
         onClickCallback(scope);
       }}
-      style={{ width: 140, height: 140, zIndex: 3 }}
+      style={{ zIndex: 3 }}
     >
-      {text}
+      {children}
     </motion.div>
+  );
+}
+
+export function RotatingIconList({
+  title,
+  imgSources,
+  radius,
+  clockwise,
+}: IconList) {
+  const interval = 360 / imgSources.length;
+  return (
+    <>
+      <b>{title}</b>
+      {imgSources.map((srcImg, index) => (
+        <RotatingIcon
+          key={index}
+          angle={index * interval}
+          radius={radius}
+          duration={2}
+          select={true}
+          clockwise={clockwise}
+          onClickCallback={() => {}}
+        >
+          <img src={srcImg} />
+        </RotatingIcon>
+      ))}
+    </>
   );
 }
