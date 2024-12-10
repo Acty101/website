@@ -9,12 +9,12 @@ function Projects() {
   const cycleInterval = 3000;
 
   const thumbnails = [
-    "./project_thumbnails/runpod.png",
-    "./project_thumbnails/potsAndPans.jpg",
-    "./project_thumbnails/detrash.png",
-    "./project_thumbnails/connectRX.jpg",
-    "./project_thumbnails/noted.png",
-    "./project_thumbnails/chataway.png",
+    "./images/project_thumbnails/runpod.png",
+    "./images/project_thumbnails/potsAndPans.jpg",
+    "./images/project_thumbnails/detrash.png",
+    "./images/project_thumbnails/connectRX.jpg",
+    "./images/project_thumbnails/noted.png",
+    "./images/project_thumbnails/chataway.png",
   ];
 
   const externalLinks = [

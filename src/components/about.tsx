@@ -18,11 +18,11 @@ function About() {
   const timeInterval = 6000;
 
   const images = [
-    "./about/profile.jpg",
-    "./about/travelling.jpg",
-    "./about/hackathon.jpg",
-    "./about/snowboard.jpg",
-    "./about/outdoor.jpg",
+    "./images/about/profile.jpg",
+    "./images/about/travelling.jpg",
+    "./images/about/hackathon.jpg",
+    "./images/about/snowboard.jpg",
+    "./images/about/outdoor.jpg",
   ];
 
   const descriptions = [
