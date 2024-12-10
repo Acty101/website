@@ -5,7 +5,7 @@
     position: relative;
     width: auto;
     height: 350px;
-    min-width: 400px;
+    min-width: 350px;
 }
   
 .logo {
@@ -15,5 +15,4 @@
 
 .logo-card {
     border-radius: 50px;
-    background: #FFFFFF;
   }

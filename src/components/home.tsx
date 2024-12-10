@@ -33,7 +33,7 @@ function Home() {
   }, [scrollYProgress]);
 
   return (
-    <div id="about">
+    <div id="about" className="bg-dark">
       <NavBar />
       <AnimatePresence>
         {renderScroll && (

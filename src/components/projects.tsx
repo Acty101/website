@@ -3,7 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { COLALIGNMID } from "./settings";
 import Carousel from "react-bootstrap/Carousel";
-import "./css/general.css"
+import "./css/general.css";
 
 function Projects() {
   const cycleInterval = 3000;
@@ -30,8 +30,8 @@ function Projects() {
 
   const thumbnailsTitle = [
     "Runpod Serverless GPU",
-    "Pots & Pans (HackGT X 1st Place Sustainability Project)",
-    "DeTrash (HackOHIO 11 2nd Place ENGIE Challenge)",
+    "Pots & Pans",
+    "DeTrash",
     "Connect RX",
     "Noted",
     "Chat-A-Way",
@@ -39,9 +39,9 @@ function Projects() {
 
   const thumbnailsCaption = [
     "Single-inference autolabelling model endpoint",
-    "Recipe generate from a picture using ML model detection",
-    "Detect, Report, and Visualize from a single picture",
-    "A unified, digital re-imagination of the healthcare system",
+    "Recipe generator from a single picture",
+    "Detect, Report, & Visualize from a single picture",
+    "A unified, digital healthcare system",
     "Simple, fast note taking with Notion integration",
     "Activity recommendations for the perfect date!",
   ];
@@ -51,7 +51,11 @@ function Projects() {
       <Row>
         <Col className={COLALIGNMID}>
           <h1>
-            <u><a href="#projects" className="no-style-link">Projects</a></u>
+            <u>
+              <a href="#projects" className="no-style-link">
+                Projects
+              </a>
+            </u>
           </h1>
         </Col>
       </Row>
@@ -81,9 +85,7 @@ function Projects() {
                       }}
                     />
                   </Row>
-                  <Row
-                    className="text-center my-2 text-white"
-                  >
+                  <Row className="text-center my-2 text-white">
                     <h3>{thumbnailsTitle[index]}</h3>
                     <p>{thumbnailsCaption[index]}</p>
                   </Row>
