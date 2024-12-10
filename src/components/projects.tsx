@@ -40,7 +40,7 @@ function Projects() {
   const thumbnailsCaption = [
     "Single-inference autolabelling model endpoint",
     "Recipe generator from a single picture",
-    "Detect, Report, & Visualize from a single picture",
+    "Detect, Report, Visualize Data about trash",
     "A unified, digital healthcare system",
     "Simple, fast note taking with Notion integration",
     "Activity recommendations for the perfect date!",
