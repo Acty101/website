@@ -1,6 +1,6 @@
 .flex-container {
     overflow-x: hidden;
-    background: #000000;
+    background-color: black;
   }
   
   .flex-container .content {

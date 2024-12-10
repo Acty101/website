@@ -26,11 +26,11 @@ function About() {
   ];
 
   const descriptions = [
-    "an aspiring software engineer",
-    "a traveler",
+    "an aspiring software engineer 🌱",
+    "a traveler 🌏",
     "a hackathon enthusiast (and winner🎉)",
-    "a snowboarder",
-    "an outdoors lover",
+    "a snowboarder ❄️",
+    "an outdoors lover 🎋",
   ];
 
   const [isFirstRender, setIsFirstRender] = useState(true);

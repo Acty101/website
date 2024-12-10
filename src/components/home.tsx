@@ -6,8 +6,7 @@ import Experience from "./experience";
 import Footer from "./footer";
 
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
-import React, { useState, useEffect } from "react";
-import { Container, Row } from "react-bootstrap";
+import { useState, useEffect } from "react";
 import "./css/general.css";
 import "./css/home.css";
 
@@ -48,7 +47,14 @@ function Home() {
           />
         )}
       </AnimatePresence>
-      <div className="flex-container text-setting">
+      <div
+        className="flex-container text-setting"
+        style={{
+          backgroundImage: "url('./misc-files/background.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <About />
         <div id="skills">
           <Skills />
