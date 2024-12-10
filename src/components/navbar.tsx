@@ -17,13 +17,6 @@ interface TooltipIconWordProps extends IconWordProps {
   hideHandler?: () => void;
 }
 
-export interface ContactLinksProps {
-  github: string;
-  linkedin: string;
-  number: string;
-  email: string;
-}
-
 function IconWord({ imgUrl, text, clickHandler }: IconWordProps) {
   return (
     <div onClick={clickHandler}>
@@ -64,9 +57,17 @@ function TooltipCopyIconWord({
   );
 }
 
-function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
+/* 
+CONTACT DETAILS:
+*/
+const GITHUB: string = "https://github.com/Acty101";
+const EMAIL: string = "junkit@umich.edu";
+const LINKEDIN: string = "https://www.linkedin.com/in/junkitlim/";
+const NUMBER: string = "(734) 450-5507";
+
+function NavBar() {
   const COPYMSG = "Copy to clipboard?";
-  const EMAILMSG = "Email me?";
+  const EMAILMSG = "Email me!";
   const [phoneMsg, setPhoneMsg] = useState(COPYMSG);
   const [emailMsg, setEmailMsg] = useState(EMAILMSG);
   const resetPhoneMsg = () => {
@@ -78,10 +79,10 @@ function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
 
   return (
     <Navbar
-      expand="lg"
-      className="bg-body-tertiary"
+      expand="md"
+      className="bg-dark"
       data-bs-theme="dark"
-      style={{ zIndex: 100 }}
+      style={{ zIndex: 1000 }}
     >
       <Container>
         <Navbar.Brand href="/">Jun Kit Lim</Navbar.Brand>
@@ -89,7 +90,11 @@ function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Navbar.Text>
             <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/#about">About</Nav.Link>
+              <Nav.Link href="/#skills">Skills</Nav.Link>
+              <Nav.Link href="/#experience">Experience</Nav.Link>
+              <Nav.Link href="/#projects">Projects</Nav.Link>
+              <Nav.Link href="/resume">Resume</Nav.Link>
               <NavDropdown
                 title="Contacts"
                 id="basic-nav-dropdown"
@@ -99,9 +104,9 @@ function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
                   <TooltipCopyIconWord
                     id="tooltip-anchor-phone"
                     imgUrl="./logo/phone.svg"
-                    text={number}
+                    text={NUMBER}
                     clickHandler={() => {
-                      navigator.clipboard.writeText(number);
+                      navigator.clipboard.writeText(NUMBER);
                       setPhoneMsg("Copied!");
                     }}
                     msg={phoneMsg}
@@ -112,10 +117,10 @@ function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
                   <TooltipCopyIconWord
                     id="tooltip-anchor-email"
                     imgUrl="./logo/gmail.svg"
-                    text={email}
+                    text={EMAIL}
                     clickHandler={() => {
                       setEmailMsg("Let's Chat!");
-                      window.location.href = `mailto:${email}`;
+                      window.location.href = `mailto:${EMAIL}`;
                     }}
                     msg={emailMsg}
                     hideHandler={resetEmailMsg}
@@ -123,13 +128,13 @@ function NavBar({ github, linkedin, number, email }: ContactLinksProps) {
                 </NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title="Links" id="basic-nav-dropdown">
-                <NavDropdown.Item href={github}>
+                <NavDropdown.Item href={GITHUB}>
                   <IconWord
                     imgUrl="./logo/github-mark-white.svg"
                     text="GitHub"
                   />
                 </NavDropdown.Item>
-                <NavDropdown.Item href={linkedin}>
+                <NavDropdown.Item href={LINKEDIN}>
                   <IconWord imgUrl="./logo/linkedin_icon.svg" text="LinkedIn" />
                 </NavDropdown.Item>
               </NavDropdown>
