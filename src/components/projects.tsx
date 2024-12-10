@@ -3,7 +3,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { COLALIGNMID } from "./settings";
 import Carousel from "react-bootstrap/Carousel";
-import "./css/projects.css";
 
 function Projects() {
   const cycleInterval = 3000;
@@ -30,8 +29,8 @@ function Projects() {
 
   const thumbnailsTitle = [
     "Runpod Serverless GPU",
-    "Pots & Pans - HackGT X 1st Place Sustainability Project",
-    "DeTrash - HackOHIO 11 2nd Place ENGIE Sponsor Challenge",
+    "Pots & Pans (HackGT X 1st Place Sustainability Project)",
+    "DeTrash (HackOHIO 11 2nd Place ENGIE Challenge)",
     "Connect RX",
     "Noted",
     "Chat-A-Way",
@@ -40,7 +39,7 @@ function Projects() {
   const thumbnailsCaption = [
     "Single-inference autolabelling model endpoint",
     "Recipe generate from a picture using ML model detection",
-    "Reporting tool, Data Visualization, and Trash Model detection all in one",
+    "Detect, Report, and Visualize from a single picture",
     "A unified, digital re-imagination of the healthcare system",
     "Simple, fast note taking with Notion integration",
     "Activity recommendations for the perfect date!",
@@ -65,28 +64,29 @@ function Projects() {
                 rel="noopener noreferrer"
                 style={{ textDecoration: "none" }}
               >
-                <div
-                  className="d-flex align-items-center justify-content-center"
-                  style={{ height: "600px" }}
-                >
-                  <img
-                    src={srcImg}
-                    className="bg-dark mx-5"
-                    style={{
-                      objectFit: "contain",
-                      borderRadius: "150px",
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  />
-                </div>
-                <div
-                  className="custom-caption text-center mt-3 text-white"
-                  style={{ height: "110px" }}
-                >
-                  {thumbnailsTitle[index] && <h3>{thumbnailsTitle[index]}</h3>}
-                  <p>{thumbnailsCaption[index]}</p>
-                </div>
+                <Container className="justify-content-center mt-2 mb-4">
+                  <Row
+                    className="d-flex align-items-center justify-content-center mx-5"
+                    style={{ height: "600px" }}
+                  >
+                    <img
+                      src={srcImg}
+                      className="bg-dark"
+                      style={{
+                        objectFit: "contain",
+                        borderRadius: "100px",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    />
+                  </Row>
+                  <Row
+                    className="text-center my-2 text-white"
+                  >
+                    <h3>{thumbnailsTitle[index]}</h3>
+                    <p>{thumbnailsCaption[index]}</p>
+                  </Row>
+                </Container>
               </a>
             </Carousel.Item>
           ))}

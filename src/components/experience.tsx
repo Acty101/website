@@ -20,7 +20,7 @@ const tapwayDetails = [
 
 function Work() {
   return (
-    <Container className="justify-content-center mt-4 mb-4">
+    <Container className="justify-content-center mt-2 mb-2">
       <Row>
         <Col className={COLALIGNMID}>
           <h1>

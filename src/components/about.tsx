@@ -103,7 +103,7 @@ function About() {
   return (
     <>
       <Container
-        className="justify-content-center mt-5 mb-4"
+        className="justify-content-center mt-5 mb-5"
         style={{ paddingTop: "60px" }}
       >
         <Row className="justify-content-center g-3">
