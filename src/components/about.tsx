@@ -134,28 +134,30 @@ function About() {
                 {!startInf && (
                   <>
                     <CursorBlinker fontSize={40} />
-                    <div style={{ paddingBottom: "60px" }}></div>
+                    
                   </>
                 )}
               </h1>
             </Row>
-            {startInf && (
-              <Row className="justify-content-center">
-                <div
-                  className="text-center"
-                  style={{
-                    fontSize: "30px",
-                    fontFamily: "Arial, sans-serif",
-                    fontWeight: "bold",
-                    paddingTop: "5px",
-                    paddingBottom: "5px",
-                  }}
-                >
-                  <motion.span>{displayTextInf}</motion.span>
-                  <CursorBlinker fontSize={30} />
-                </div>
-              </Row>
-            )}
+
+            <Row className="justify-content-center">
+              <div
+                className="text-center"
+                style={{
+                  fontSize: "30px",
+                  fontFamily: "Arial, sans-serif",
+                  fontWeight: "bold",
+                  minHeight: "90px"
+                }}
+              >
+                {startInf && (
+                  <>
+                    <motion.span>{displayTextInf}</motion.span>
+                    <CursorBlinker fontSize={30} />
+                  </>
+                )}
+              </div>
+            </Row>
           </Container>
         </Col>
       </Container>

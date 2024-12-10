@@ -47,8 +47,11 @@ function Skills() {
 
   const sources = [languageSources, frameworkSources, dbSources, techSources];
 
+
+  
+
   return (
-    <Container className="align-items-center justify-content-center mt-4 mb-4">
+    <Container className="align-items-center justify-content-center mx-auto">
       <Row>
         <Col className={COLALIGNMID}>
           <h1>
@@ -63,10 +66,11 @@ function Skills() {
         {titles.map((title, index) => (
           <Col
             key={index}
-            lg={12}
-            xl={6}
-            className={COLALIGNMID}
-            style={{ minHeight: contentHeight }}
+            md={12}
+            lg={6}
+            xl={5}
+            className={`${COLALIGNMID} bg-dark mt-2 mb-2 mx-2`}
+            style={{ minHeight: contentHeight, borderRadius: 100}}
           >
             <RotatingIconList
               title={title}

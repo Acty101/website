@@ -11,15 +11,6 @@ import { Container, Row } from "react-bootstrap";
 import "./css/general.css";
 import "./css/home.css";
 
-function ContentWrapper({ children }: { children: React.ReactNode }) {
-  return (
-    <Container className="h-100 content mt-4 mb-4 bg-dark">
-      <Row />
-      {children}
-      <Row />
-    </Container>
-  );
-}
 function Home() {
   // scroll bar configs
   const { scrollYProgress } = useScroll();
@@ -58,14 +49,9 @@ function Home() {
         )}
       </AnimatePresence>
       <div className="flex-container text-setting">
-        <div style={{ height: "calc(100vh - 100px)" }}>
-          <About />
-        </div>
-
+        <About />
         <div id="skills">
-          <ContentWrapper>
-            <Skills />
-          </ContentWrapper>
+          <Skills />
         </div>
         <div id="experience">
           <Experience />
