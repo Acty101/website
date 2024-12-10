@@ -4,6 +4,7 @@
 /public/*
 !/public/images/
 !/public/images/**
+!favicon.ico
 
 # dependencies
 /node_modules
