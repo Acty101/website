@@ -71,10 +71,10 @@ function Projects() {
                 >
                   <img
                     src={srcImg}
-                    className="bg-dark"
+                    className="bg-dark mx-5"
                     style={{
                       objectFit: "contain",
-                      borderRadius: "10px",
+                      borderRadius: "150px",
                       width: "100%",
                       height: "100%",
                     }}
