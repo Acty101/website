@@ -47,15 +47,16 @@ function Skills() {
 
   const sources = [languageSources, frameworkSources, dbSources, techSources];
 
-
-  
-
   return (
-    <Container className="align-items-center justify-content-center mx-auto">
+    <Container className="align-items-center justify-content-center mx-auto my-4">
       <Row>
         <Col className={COLALIGNMID}>
           <h1>
-            <u>Skills</u>
+            <u>
+              <a href="#skills" className="no-style-link">
+                Skills
+              </a>
+            </u>
           </h1>
         </Col>
       </Row>
@@ -70,7 +71,7 @@ function Skills() {
             lg={6}
             xl={5}
             className={`${COLALIGNMID} bg-dark mt-2 mb-2 mx-2`}
-            style={{ minHeight: contentHeight, borderRadius: 100}}
+            style={{ minHeight: contentHeight, borderRadius: "50px" }}
           >
             <RotatingIconList
               title={title}

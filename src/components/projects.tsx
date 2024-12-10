@@ -3,6 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { COLALIGNMID } from "./settings";
 import Carousel from "react-bootstrap/Carousel";
+import "./css/general.css"
 
 function Projects() {
   const cycleInterval = 3000;
@@ -46,11 +47,11 @@ function Projects() {
   ];
 
   return (
-    <Container className="justify-content-center mt-4 mb-5">
+    <Container className="justify-content-center my-4">
       <Row>
         <Col className={COLALIGNMID}>
           <h1>
-            <u>Projects</u>
+            <u><a href="#projects" className="no-style-link">Projects</a></u>
           </h1>
         </Col>
       </Row>
@@ -74,7 +75,7 @@ function Projects() {
                       className="bg-dark"
                       style={{
                         objectFit: "contain",
-                        borderRadius: "100px",
+                        borderRadius: "75px",
                         width: "100%",
                         height: "100%",
                       }}

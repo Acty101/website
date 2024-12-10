@@ -79,7 +79,7 @@ export function RotatingIcon({
     <motion.div
       ref={scope}
       className="round-corners d-flex align-items-center justify-content-center"
-      whileHover={select ? { scale: 1.2 } : undefined}
+      whileHover={select ? { scale: 1.3 } : undefined}
       onClick={() => {
         onClickCallback(scope);
       }}
@@ -99,7 +99,7 @@ export function RotatingIconList({
   const interval = 360 / imgSources.length;
   return (
     <>
-      <b>{title}</b>
+      <h4><b>{title}</b></h4>
       {imgSources.map((srcImg, index) => (
         <RotatingIcon
           key={index}

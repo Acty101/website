@@ -3,8 +3,9 @@
     justify-content: center;
     align-items: center; 
     position: relative;
-    width: 350px;
+    width: auto;
     height: 350px;
+    min-width: 400px;
 }
   
 .logo {

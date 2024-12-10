@@ -20,25 +20,24 @@ const tapwayDetails = [
 
 function Work() {
   return (
-    <Container className="justify-content-center mt-2 mb-2">
+    <Container className="justify-content-center my-4">
       <Row>
         <Col className={COLALIGNMID}>
           <h1>
-            <u>Work Experience</u>
+          <u><a href="#experience" className="no-style-link">Work Experience</a></u>
           </h1>
         </Col>
       </Row>
       <Row>
-        <Col sm className={`${COLALIGNMID} mt-2 mb-2`}>
+        <Col sm className={`${COLALIGNMID} my-4`}>
           <LogoCard
             duration={2}
             logo_path="./images/work/keysight_logo.png"
-            scale={1.3}
             title="R&D Software Engineering Intern"
             points={keysightDetails}
           />
         </Col>
-        <Col sm className={`${COLALIGNMID} mt-2 mb-2`}>
+        <Col sm className={`${COLALIGNMID} my-4`}>
           <LogoCard
             duration={2}
             logo_path="./images/work/tapway_logo.png"

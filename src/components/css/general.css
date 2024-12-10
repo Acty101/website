@@ -1,3 +1,9 @@
 .text-setting {
   color: aliceblue;
 }
+
+.no-style-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: default; 
+}
