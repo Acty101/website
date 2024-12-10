@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { COLALIGNMID } from "./settings";
-import { RotatingIconList } from "./bubbles";
+import { RotatingIconList } from "./icons";
 import "./css/general.css";
 
 function Skills() {

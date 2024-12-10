@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./css/profile.css";
 
 function Profile({ duration }: { duration: number }) {
-  const [img, setImg] = useState("./images/profile.jpg");
+  const [img, setImg] = useState("./about/profile.jpg");
 
   return (
     <motion.div

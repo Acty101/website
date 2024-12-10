@@ -32,7 +32,7 @@ function Work() {
         <Col sm className={`${COLALIGNMID} mt-2 mb-2`}>
           <LogoCard
             duration={2}
-            logo_path="./images/keysight_logo.png"
+            logo_path="./work/keysight_logo.png"
             scale={1.3}
             title="R&D Software Engineering Intern"
             points={keysightDetails}
@@ -41,7 +41,7 @@ function Work() {
         <Col sm className={`${COLALIGNMID} mt-2 mb-2`}>
           <LogoCard
             duration={2}
-            logo_path="./images/tapway_logo.png"
+            logo_path="./work/tapway_logo.png"
             title="AI Engineering (MLOps) Intern"
             points={tapwayDetails}
           />

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useAnimate, AnimationScope } from "framer-motion";
-import "./css/bubbles.css";
+import "./css/icons.css";
 
 interface AnimationSettings {
   angle: number;
@@ -53,7 +53,7 @@ export function RotatingIcon({
   useEffect(() => {
     const interval = setInterval(() => {
       // Update the counter value every second
-      setAngle((prev) => prev + 1);
+      setAngle((prev) => prev + 0.4);
     }, 100);
     // Cleanup function to clear the interval when the component unmounts
     return () => clearInterval(interval);

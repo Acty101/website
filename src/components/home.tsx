@@ -43,7 +43,7 @@ function Home() {
   }, [scrollYProgress]);
 
   return (
-    <>
+    <div id="about">
       <NavBar />
       <AnimatePresence>
         {renderScroll && (
@@ -57,11 +57,11 @@ function Home() {
           />
         )}
       </AnimatePresence>
-
       <div className="flex-container text-setting">
-        <div id="about">
+        <div style={{ height: "calc(100vh - 100px)" }}>
           <About />
         </div>
+
         <div id="skills">
           <ContentWrapper>
             <Skills />
@@ -75,7 +75,7 @@ function Home() {
         </div>
         <Footer />
       </div>
-    </>
+    </div>
   );
 }
 
