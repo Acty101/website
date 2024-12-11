@@ -29,13 +29,12 @@ function About() {
   const descriptions = [
     "an aspiring software engineer 🌱",
     "a traveler 🌏",
-    "a hackathon enthusiast (and winner🎉)",
+    "a hackathon enthusiast 💻 (and winner) 🎉",
     "a foodie 🍜",
     "a snowboarder ❄️",
     "an outdoors lover 🎋",
   ];
 
-  const [isFirstRender, setIsFirstRender] = useState(true);
   const [index, setIndex] = useState(0);
   const [startInf, setStartInf] = useState(false);
 
@@ -74,33 +73,19 @@ function About() {
   }, []);
 
   useEffect(() => {
-    if (isFirstRender) {
-      const timeout = setTimeout(() => {
-        const controls = animate(countInf, 60, {
-          type: "tween",
-          duration: (timeInterval / 1000 - 2) / 2,
-          ease: "easeIn",
-          repeat: 1,
-          repeatType: "reverse",
-          repeatDelay: 1,
-        });
-        return controls.stop;
-      }, timeAnimationDelay);
-
-      setIsFirstRender(false);
-      return () => clearTimeout(timeout);
-    } else {
+    const timeout = setTimeout(() => {
       const controls = animate(countInf, 60, {
         type: "tween",
         duration: (timeInterval / 1000 - 2) / 2,
         ease: "easeIn",
-        repeat: 1,
+        repeat: Infinity,
         repeatType: "reverse",
         repeatDelay: 1,
       });
       return controls.stop;
-    }
-  }, [index]);
+    }, timeAnimationDelay);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <>
@@ -136,7 +121,6 @@ function About() {
                 {!startInf && (
                   <>
                     <CursorBlinker fontSize={40} />
-                    
                   </>
                 )}
               </h1>
@@ -149,7 +133,7 @@ function About() {
                   fontSize: "30px",
                   fontFamily: "Arial, sans-serif",
                   fontWeight: "bold",
-                  minHeight: "90px"
+                  minHeight: "90px",
                 }}
               >
                 {startInf && (
