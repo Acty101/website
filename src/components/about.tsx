@@ -21,6 +21,7 @@ function About() {
     "./images/about/profile.jpg",
     "./images/about/travelling.jpg",
     "./images/about/hackathon.jpg",
+    "./images/about/foodie.jpg",
     "./images/about/snowboard.jpg",
     "./images/about/outdoor.jpg",
   ];
@@ -29,6 +30,7 @@ function About() {
     "an aspiring software engineer 🌱",
     "a traveler 🌏",
     "a hackathon enthusiast (and winner🎉)",
+    "a foodie 🍜",
     "a snowboarder ❄️",
     "an outdoors lover 🎋",
   ];
