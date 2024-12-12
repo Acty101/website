@@ -115,18 +115,13 @@ function About() {
       <Container>
         <Col md className={COLALIGNMID}>
           <Container className="justify-content-center mt-4 mb-4">
-            <Row className="justify-content-center">
+            <Row>
               <h1 className="text-center">
                 <motion.span>{displayText}</motion.span>
-                {!startInf && (
-                  <>
-                    <CursorBlinker fontSize={40} />
-                  </>
-                )}
+                {!startInf && <CursorBlinker fontSize={37} />}
               </h1>
             </Row>
-
-            <Row className="justify-content-center">
+            <Row>
               <div
                 className="text-center"
                 style={{
