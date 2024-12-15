@@ -5,29 +5,25 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Tooltip } from "react-tooltip";
 
-interface IconWordProps {
+interface IconProps {
   imgUrl: string;
-  text: string;
-  clickHandler?: () => void;
+  link: string;
 }
 
-interface TooltipIconWordProps extends IconWordProps {
+interface TooltipIconWordProps {
   id: string;
   msg: string;
+  text: string;
+  imgUrl: string;
+  clickHandler?: () => void;
   hideHandler?: () => void;
 }
 
-function IconWord({ imgUrl, text, clickHandler }: IconWordProps) {
+function Icon({ imgUrl, link }: IconProps) {
   return (
-    <div onClick={clickHandler}>
-      <img
-        src={imgUrl}
-        width="25"
-        height="25"
-        style={{ marginRight: "10px" }}
-      />
-      {text}
-    </div>
+    <a href={link} target="_blank" rel="noopener noreferrer">
+      <img className="mx-2" src={imgUrl} width="30"/>
+    </a>
   );
 }
 
@@ -60,9 +56,7 @@ function TooltipCopyIconWord({
 /* 
 CONTACT DETAILS:
 */
-const GITHUB: string = "https://github.com/Acty101";
 const EMAIL: string = "junkit@umich.edu";
-const LINKEDIN: string = "https://www.linkedin.com/in/junkitlim/";
 const NUMBER: string = "(734) 450-5507";
 
 function NavBar() {
@@ -77,6 +71,24 @@ function NavBar() {
     setEmailMsg(EMAILMSG);
   };
 
+  const iconLinks = [
+    "https://www.instagram.com/jun_kit11/",
+    "https://www.linkedin.com/in/junkitlim/",
+    "https://github.com/Acty101",
+  ];
+
+  const iconImg = [
+    "./logo/instagram.svg",
+    "./logo/linkedin_icon.svg",
+    "./logo/github-white.svg",
+  ];
+
+  const iconTooltipIds = [
+    "tooltip-anchor-instagram",
+    "tooltip-anchor-linkedin",
+    "tooltip-anchor-github",
+  ];
+
   return (
     <Navbar
       expand="md"
@@ -88,6 +100,9 @@ function NavBar() {
         <Navbar.Brand href="/">Jun Kit Lim</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          {iconTooltipIds.map((id, index) => (
+            <Icon key={id} imgUrl={iconImg[index]} link={iconLinks[index]} />
+          ))}
           <Navbar.Text>
             <Nav className="me-auto">
               <Nav.Link href="/#about">About</Nav.Link>
@@ -125,17 +140,6 @@ function NavBar() {
                     msg={emailMsg}
                     hideHandler={resetEmailMsg}
                   />
-                </NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown title="Links" id="basic-nav-dropdown">
-                <NavDropdown.Item href={GITHUB}>
-                  <IconWord
-                    imgUrl="./logo/github-mark-white.svg"
-                    text="GitHub"
-                  />
-                </NavDropdown.Item>
-                <NavDropdown.Item href={LINKEDIN}>
-                  <IconWord imgUrl="./logo/linkedin_icon.svg" text="LinkedIn" />
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
