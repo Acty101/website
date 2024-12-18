@@ -21,11 +21,11 @@ interface TooltipIconWordProps {
 
 function Icon({ imgUrl, link }: IconProps) {
   return (
-    <div className="mx-2">
+    <span className="mx-2">
       <a href={link} target="_blank" rel="noopener noreferrer">
         <img src={imgUrl} width="30" />
       </a>
-    </div>
+    </span>
   );
 }
 
