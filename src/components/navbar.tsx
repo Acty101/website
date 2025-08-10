@@ -119,7 +119,7 @@ function NavBar() {
                 align="end"
                 role="button"
               >
-                <NavDropdown.Item>
+                <NavDropdown.Item as="div" role="button">
                   <TooltipCopyIconWord
                     id="tooltip-anchor-phone"
                     imgUrl="./logo/phone.svg"
@@ -132,7 +132,7 @@ function NavBar() {
                     hideHandler={resetPhoneMsg}
                   />
                 </NavDropdown.Item>
-                <NavDropdown.Item>
+                <NavDropdown.Item as="div" role="button">
                   <TooltipCopyIconWord
                     id="tooltip-anchor-email"
                     imgUrl="./logo/gmail.svg"
