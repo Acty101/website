@@ -3,7 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CursorBlinker from "./cursor";
 import { COLALIGNMID } from "./settings";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   AnimatePresence,
   motion,
@@ -14,7 +14,7 @@ import {
 import "./css/about.css";
 
 function About() {
-  const timeAnimationDelay = 4000;
+  const timeAnimationDelay = 2000;
   const timeInterval = 6000;
 
   const images = [
@@ -37,6 +37,10 @@ function About() {
 
   const [index, setIndex] = useState(0);
   const [startInf, setStartInf] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(
+    images.map(() => false)
+  );
+  const [animKey, setAnimKey] = useState(0); // to restart animation
 
   const baseText = "Hello there!👋 I'm Jun Kit 😎";
   const count = useMotionValue(0);
@@ -51,48 +55,80 @@ function About() {
     (latest) => descriptions[index]?.slice(0, latest) || ""
   );
 
+  // preload images once
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setStartInf(true);
-      const interval = setInterval(() => {
-        setIndex((prev) => (prev + 1) % images.length);
-      }, timeInterval);
-      return () => clearInterval(interval);
-    }, timeAnimationDelay);
-
-    return () => clearTimeout(timeout);
+    images.forEach((src, i) => {
+      const img = new window.Image();
+      img.src = src;
+      img.onload = () => {
+        setImagesLoaded((prev) => {
+          const updated = [...prev];
+          updated[i] = true;
+          return updated;
+        });
+      };
+    });
   }, []);
 
+  // animate intro text, then switch to cycling
   useEffect(() => {
     const controls = animate(count, baseText.length, {
       type: "tween",
       duration: timeAnimationDelay / 1000,
       ease: "easeInOut",
+      onComplete: () => setStartInf(true),
     });
     return controls.stop;
   }, []);
 
+  // sync image and description animation
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      const controls = animate(countInf, 60, {
-        type: "tween",
-        duration: (timeInterval / 1000 - 2) / 2,
-        ease: "easeIn",
-        repeat: Infinity,
-        repeatType: "reverse",
-        repeatDelay: 1,
-      });
-      return controls.stop;
-    }, timeAnimationDelay);
-    return () => clearTimeout(timeout);
-  }, []);
+    if (!startInf) return;
+    let timer: NodeJS.Timeout | null = null;
+
+    const nextIndex = (index + 1) % images.length;
+
+    const advance = () => {
+      setIndex(nextIndex);
+      setAnimKey((k) => k + 1);
+    };
+
+    if (imagesLoaded[nextIndex]) {
+      timer = setTimeout(advance, timeInterval);
+    } else {
+      // Wait until image is loaded, then advance
+      const checkLoaded = setInterval(() => {
+        if (imagesLoaded[nextIndex]) {
+          advance();
+          clearInterval(checkLoaded);
+        }
+      }, 500);
+      timer = checkLoaded;
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [index, imagesLoaded, startInf, timeInterval, images.length]);
+
+  // animate cycling description text, restart on animKey change
+  useEffect(() => {
+    if (!startInf) return;
+    countInf.set(0);
+    const controls = animate(countInf, 60, {
+      type: "tween",
+      duration: (timeInterval - timeAnimationDelay) / 1000 / 2,
+      ease: "easeIn",
+      repeat: Infinity,
+      repeatType: "reverse",
+      repeatDelay: 1,
+    });
+    return controls.stop;
+  }, [startInf, animKey, timeInterval]);
 
   return (
     <>
-      <Container
-        className="justify-content-center mt-5 mb-5"
-        style={{ paddingTop: "60px" }}
-      >
+      <Container className="justify-content-center mt-4 mb-5">
         <Row className="justify-content-center g-3">
           <Col md className={COLALIGNMID} style={{ position: "relative" }}>
             <motion.div className="image-container">
@@ -114,7 +150,7 @@ function About() {
 
       <Container>
         <Col md className={COLALIGNMID}>
-          <Container className="justify-content-center mt-4 mb-4">
+          <Container className="justify-content-center">
             <Row>
               <h1 className="text-center">
                 <motion.span>{displayText}</motion.span>
@@ -133,7 +169,7 @@ function About() {
               >
                 {startInf && (
                   <>
-                    <motion.span>{displayTextInf}</motion.span>
+                    <motion.span key={animKey}>{displayTextInf}</motion.span>
                     <CursorBlinker fontSize={30} />
                   </>
                 )}

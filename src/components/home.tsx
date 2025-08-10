@@ -6,11 +6,12 @@ import Experience from "./experience";
 import Footer from "./footer";
 
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./css/general.css";
 import "./css/home.css";
 
 function Home() {
+  const navbarRef = useRef<HTMLDivElement>(null);
   // scroll bar configs
   const { scrollYProgress } = useScroll();
   const scrollYProgressDamped = useSpring(scrollYProgress, {
@@ -34,7 +35,6 @@ function Home() {
 
   return (
     <div
-      id="about"
       className="bg-dark"
       style={{
         overflowX: "hidden",
@@ -63,7 +63,9 @@ function Home() {
           backgroundPosition: "center",
         }}
       >
-        <About />
+        <div id="about">
+          <About />
+        </div>
         <div id="skills">
           <Skills />
         </div>
