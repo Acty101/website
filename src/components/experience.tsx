@@ -5,6 +5,12 @@ import LogoCard from "./logo";
 import { COLALIGNMID } from "./settings";
 import "./css/experience.css";
 
+const optiverDetails = [
+  "Enhanced a network traffic monitoring app used across 17+ exchanges to decode and write order/trade data for compliance reporting by implementing two-tier session-level filtering, enabling cancel-on-behalf handling for CME, laying groundwork for multi-entity output per instance, and developing a timezone-aware utility class",
+  "Integrated the ICU library into a trading and monitoring monorepo by adding pinned builds for AlmaLinux 9 and CentOS 7, creating reusable CMake modules, and resolving CI issues with custom Jenkinsfile scripts",
+  "Developed unit and integration tests using both an in-house framework and GoogleTest; majority of code deployed and running in production",
+];
+
 const keysightDetails = [
   "Developed a multi-threaded Python GUI to display real-time Keysight instrument data with integrated AI-driven UI navigation and AI-powered data analysis capabilities",
   "Streamlined the GUI build process by integrating Bash scripts, CMakeLists.txt, and Makefiles to automate the compilation of C++/Python bindings, manage dependencies, and implement error detection mechanisms",
@@ -24,20 +30,37 @@ function Work() {
       <Row>
         <Col className={COLALIGNMID}>
           <h1>
-          <u><a href="#experience" className="no-style-link">Work Experience</a></u>
+            <u>
+              <a href="#experience" className="no-style-link">
+                Work Experience
+              </a>
+            </u>
           </h1>
         </Col>
       </Row>
       <Row>
-        <Col sm className={`${COLALIGNMID} my-4`}>
+        <Col lg={6} className={`${COLALIGNMID} my-4 mx-auto`}>
+          <LogoCard
+            duration={2}
+            logo_path="./images/work/Optiver.png"
+            title="Software Engineering Intern"
+            points={optiverDetails}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col lg={6} className={`${COLALIGNMID} my-4 d-flex flex-column`}>
           <LogoCard
             duration={2}
             logo_path="./images/work/keysight_logo.png"
-            title="R&D Software Engineering Intern"
+            title="R&D Software Intern"
             points={keysightDetails}
           />
         </Col>
-        <Col sm className={`${COLALIGNMID} my-4`}>
+        <Col
+          lg={6}
+          className={`${COLALIGNMID} my-4 d-flex flex-column justify-content-end`}
+        >
           <LogoCard
             duration={2}
             logo_path="./images/work/tapway_logo.png"

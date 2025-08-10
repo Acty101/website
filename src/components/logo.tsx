@@ -53,11 +53,33 @@ function LogoCard({
         </Col>
       </Row>
       <Row>
-        <Col sm className={COLALIGNMID}>
-          <ul>
-            <h1>{title}</h1>
+        <Col sm className={COLALIGNEND}>
+          <h1>{title}</h1>
+        </Col>
+      </Row>
+      <Row>
+        <Col
+          sm
+          className={`${COLALIGNMID} some-justify-class`}
+          style={{ maxWidth: "92.5%", textAlign: "justify" }}
+        >
+          <ul
+            style={{
+              paddingLeft: "10%",
+              lineHeight: 1.5,
+              marginTop: "1rem",
+              marginBottom: "1rem",
+            }}
+          >
             {points.map((point, index) => (
-              <li key={index}>{point}</li>
+              <li key={index} style={{ marginBottom: "1rem" }}>
+                {point.split(". ").map((sentence, i) => (
+                  <p key={i} style={{ margin: 0 }}>
+                    {sentence.trim()}
+                    {i < point.split(". ").length - 1 ? "." : ""}
+                  </p>
+                ))}
+              </li>
             ))}
           </ul>
         </Col>

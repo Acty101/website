@@ -116,6 +116,7 @@ function NavBar() {
                 title="Contacts"
                 id="basic-nav-dropdown"
                 autoClose="outside"
+                align="end"
               >
                 <NavDropdown.Item>
                   <TooltipCopyIconWord

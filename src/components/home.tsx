@@ -33,7 +33,15 @@ function Home() {
   }, [scrollYProgress]);
 
   return (
-    <div id="about" className="bg-dark">
+    <div
+      id="about"
+      className="bg-dark"
+      style={{
+        overflowX: "hidden",
+        width: "100%",
+        position: "relative",
+      }}
+    >
       <NavBar />
       <AnimatePresence>
         {renderScroll && (
