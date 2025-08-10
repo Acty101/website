@@ -117,9 +117,7 @@ function NavBar() {
                 id="basic-nav-dropdown"
                 autoClose="outside"
                 align="end"
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
+                role="button"
               >
                 <NavDropdown.Item>
                   <TooltipCopyIconWord
