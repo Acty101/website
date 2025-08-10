@@ -128,7 +128,7 @@ function About() {
 
   return (
     <>
-      <Container className="justify-content-center mt-4 mb-5">
+      <Container className="justify-content-center mt-5 mb-5">
         <Row className="justify-content-center g-3">
           <Col md className={COLALIGNMID} style={{ position: "relative" }}>
             <motion.div className="image-container">
