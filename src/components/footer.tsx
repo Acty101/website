@@ -12,7 +12,7 @@ const Footer = () => {
           <Col md={6} className="text-center">
           </Col>
           <Col md={3} className="text-right">
-            <h6>&copy; 2024 Jun Kit Lim. All rights reserved.</h6>  
+            <h6>&copy; {new Date().getFullYear()} Jun Kit Lim. All rights reserved.</h6>
           </Col>
         </Row>
       </Container>
